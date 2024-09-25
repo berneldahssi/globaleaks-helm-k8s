@@ -1,0 +1,6 @@
+# Treat all .tpl files as YAML for Helm charts
+*.tpl linguist-language=YAML
+
+# Optionally, you can specify other extensions if needed
+*.yaml linguist-language=YAML
+*.yml linguist-language=YAML
