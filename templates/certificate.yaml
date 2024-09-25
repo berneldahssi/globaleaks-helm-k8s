@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: {{ .Release.Name }}-certificate
+spec:
+  secretName: {{ .Values.ingressRoute.secretName }}
+  issuerRef:
+    kind: Issuer
+    name: {{ .Values.issuerName }}
+  commonName: {{ .Values.certificate.commonName }}
+  dnsNames:
+  {{- range .Values.certificate.dnsNames }}
+  - {{ . }}
+  {{- end }}

@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: globaleaks/globaleaks
+  tag: v5.0.10
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: http
+    - port: 443
+      targetPort: 8443
+      name: https
+
+pvc:
+  storage: 100Mi
+
+ingressRoute:
+  host: "localhost" # Replace with your domain or use localhost for testing
+  secretName: "globaleaks-tls"
+  serversTransportName: "globaleaks-transport"
+
+certificate:
+  commonName: "localhost" # Replace with your domain
+  dnsNames:
+    - "localhost" # Replace with your domain
+
+issuerName: "selfsigned-issuer"
